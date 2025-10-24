@@ -45,7 +45,20 @@ function playSingleRound(humanChoice, computerChoice) {
     }
 }
 
-humanChoice = getHumanChoice();
-computerChoice = getComputerChoice();
+function displayFinalScore(){
+    console.log(`Human score: ${humanScore} and computer score: ${computerScore}`)
+}
 
-playSingleRound(humanChoice, computerChoice);
+function playGame() {
+    numberOfRounds = 5;
+
+    for (let i=0; i < numberOfRounds; i++){
+        humanChoice = getHumanChoice();
+        computerChoice = getComputerChoice();
+
+        playSingleRound(humanChoice, computerChoice);
+    }
+    displayFinalScore()
+}
+
+playGame()
