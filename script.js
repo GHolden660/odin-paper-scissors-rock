@@ -46,10 +46,29 @@ function playSingleRound(humanChoice, computerChoice) {
         computerScore += 1;
     }
     results.appendChild(newPara);
+    score.textContent=`Score === User ${humanScore} : ${computerScore} Computer`;
+
+    if (computerScore >= 5){
+        displayWinner("Computer");
+        disableButtons();
+    } else if (humanScore >= 5){
+        displayWinner("You");
+        disableButtons();
+    }
 }
 
-function displayFinalScore(){
-    console.log(`Human score: ${humanScore} and computer score: ${computerScore}`)
+function disableButtons() {
+    paperBtn.disabled = true;
+    scissorsBtn.disabled = true;
+    rockBtn.disabled = true;
+}
+
+function displayWinner(winner){
+    const winningBanner = document.createElement("h1");
+    winningBanner.textContent = `${winner} won!`;
+    winningBanner.style.cssText = winner == "Computer" ? "color: red" : "color: green";
+    results.style.cssText = "color: darkgrey";
+    score.appendChild(winningBanner);
 }
 
 const paperBtn = document.getElementById("paper");
@@ -61,4 +80,7 @@ scissorsBtn.addEventListener("click", () => playSingleRound(scissorsBtn.id, getC
 const rockBtn = document.getElementById("rock");
 rockBtn.addEventListener("click", () => playSingleRound(rockBtn.id, getComputerChoice()));
 
-const results = document.getElementById("results")
+const results = document.getElementById("results");
+const score = document.getElementById("score");
+score.textContent = `Score === User 0 : 0 Computer`;
+
