@@ -19,31 +19,33 @@ let computerScore = 0;
 
 function playSingleRound(humanChoice, computerChoice) {
     humanChoice = humanChoice.toLowerCase();
+    const newPara = document.createElement("p");
     if (humanChoice === "paper" && computerChoice == "rock"){
-        console.log("You win! Paper beats Rock!");
+        newPara.textContent="You win! Paper beats Rock!";
         humanScore += 1;
     } else if (humanChoice === "paper" && computerChoice == "paper"){
-        console.log("Draw!")
+        newPara.textContent="Draw!";
     } else if (humanChoice === "paper" && computerChoice == "scissors"){
-        console.log("You lose! Scissors beats Paper!")
+        newPara.textContent="You lose! Scissors beats Paper!";
         computerScore += 1;
     } else if (humanChoice === "scissors" && computerChoice == "paper"){
-        console.log("You win! Scissors beats Paper!");
+        newPara.textContent="You win! Scissors beats Paper!";
         humanScore += 1;
     } else if (humanChoice === "scissors" && computerChoice == "scissors"){
-        console.log("Draw!")
+        newPara.textContent="Draw!";
     } else if (humanChoice === "scissors" && computerChoice == "rock"){
-        console.log("You lose! Rock beats Scissors!")
+        newPara.textContent="You lose! Rock beats Scissors!";
         computerScore += 1;
     } else if (humanChoice === "rock" && computerChoice == "scissors"){
-        console.log("You win! Rocks beats Scissors");
+        newPara.textContent="You win! Rocks beats Scissors";
         humanScore += 1;
     } else if (humanChoice === "rock" && computerChoice == "rock"){
-        console.log("Draw!")
+        newPara.textContent="Draw!";
     } else if (humanChoice === "rock" && computerChoice == "paper"){
-        console.log("You lose! Paper beats Rock!")
+        newPara.textContent="You lose! Paper beats Rock!";
         computerScore += 1;
     }
+    results.appendChild(newPara);
 }
 
 function displayFinalScore(){
@@ -58,3 +60,5 @@ scissorsBtn.addEventListener("click", () => playSingleRound(scissorsBtn.id, getC
 
 const rockBtn = document.getElementById("rock");
 rockBtn.addEventListener("click", () => playSingleRound(rockBtn.id, getComputerChoice()));
+
+const results = document.getElementById("results")
