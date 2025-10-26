@@ -18,6 +18,7 @@ let humanScore = 0;
 let computerScore = 0;
 
 function playSingleRound(humanChoice, computerChoice) {
+    humanChoice = humanChoice.toLowerCase();
     if (humanChoice === "paper" && computerChoice == "rock"){
         console.log("You win! Paper beats Rock!");
         humanScore += 1;
@@ -49,16 +50,11 @@ function displayFinalScore(){
     console.log(`Human score: ${humanScore} and computer score: ${computerScore}`)
 }
 
-function playGame() {
-    numberOfRounds = 5;
+const paperBtn = document.getElementById("paper");
+paperBtn.addEventListener("click", () => playSingleRound(paperBtn.id, getComputerChoice()));
 
-    for (let i=0; i < numberOfRounds; i++){
-        humanChoice = getHumanChoice();
-        computerChoice = getComputerChoice();
+const scissorsBtn = document.getElementById("scissors");
+scissorsBtn.addEventListener("click", () => playSingleRound(scissorsBtn.id, getComputerChoice()));
 
-        playSingleRound(humanChoice, computerChoice);
-    }
-    displayFinalScore()
-}
-
-playGame()
+const rockBtn = document.getElementById("rock");
+rockBtn.addEventListener("click", () => playSingleRound(rockBtn.id, getComputerChoice()));
