@@ -9,11 +9,6 @@ function getComputerChoice() {
     }
 }
 
-function getHumanChoice(){
-    choice = prompt("Make your choice! Paper, scissors, or rock?").toLowerCase();
-    return choice;
-}
-
 let humanScore = 0;
 let computerScore = 0;
 
@@ -46,7 +41,6 @@ function playSingleRound(humanChoice, computerChoice) {
         computerScore += 1;
     }
     results.appendChild(newPara);
-    score.textContent=`Score === User ${humanScore} : ${computerScore} Computer`;
 
     if (computerScore >= 5){
         displayWinner("Computer");
@@ -63,12 +57,32 @@ function disableButtons() {
     rockBtn.disabled = true;
 }
 
+function enableButtons() {
+    paperBtn.disabled = false;
+    scissorsBtn.disabled = false;
+    rockBtn.disabled = false;
+}
+
 function displayWinner(winner){
     const winningBanner = document.createElement("h1");
     winningBanner.textContent = `${winner} won!`;
     winningBanner.style.cssText = winner == "Computer" ? "color: red" : "color: green";
-    results.style.cssText = "color: darkgrey";
+    results.style.cssText = "color: darkgrey;";
     score.appendChild(winningBanner);
+    score.appendChild(resetButton);
+}
+
+function clearResultsDiv(){
+    results.style.cssText = "color: black;";
+    results.textContent = "";
+}
+
+function resetGame(){
+    humanScore = 0;
+    computerScore = 0;
+    // remove score and reset game button from the DOM
+    enableButtons();
+    clearResultsDiv();
 }
 
 const paperBtn = document.getElementById("paper");
@@ -82,5 +96,8 @@ rockBtn.addEventListener("click", () => playSingleRound(rockBtn.id, getComputerC
 
 const results = document.getElementById("results");
 const score = document.getElementById("score");
-score.textContent = `Score === User 0 : 0 Computer`;
+score.textContent = `Score === User ${humanScore} : ${computerScore} Computer`;
 
+const resetButton = document.createElement("button");
+resetButton.textContent = "Play Again";
+resetButton.addEventListener("click", () => resetGame(score));
