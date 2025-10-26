@@ -40,6 +40,7 @@ function playSingleRound(humanChoice, computerChoice) {
         newPara.textContent="You lose! Paper beats Rock!";
         computerScore += 1;
     }
+    score.textContent = `Score === User ${humanScore} : ${computerScore} Computer`;
     results.appendChild(newPara);
 
     if (computerScore >= 5){
@@ -81,6 +82,7 @@ function resetGame(){
     humanScore = 0;
     computerScore = 0;
     // remove score and reset game button from the DOM
+    score.textContent = `Score === User ${humanScore} : ${computerScore} Computer`;
     enableButtons();
     clearResultsDiv();
 }
